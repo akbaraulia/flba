@@ -1,0 +1,16 @@
+{
+    "name": "princebamm/flba",
+    "description": "FLBA (Flutter Laravel by Anonymous) - kumpulan kode inspiratif buat generasi pejuang akhir SMK",
+    "version": "0.1.0",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {},
+    "authors": [
+      {
+        "name": "Prince Bammm Antapradja",
+        "email": "akbarauliaramadhan@gmail.com"
+      }
+    ],
+    "require": {}
+  }
+  
