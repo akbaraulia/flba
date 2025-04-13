@@ -1,11 +1,10 @@
-# Ignore all these file types or folders from being exported
+# Exclude unnecessary files from Composer package
 /.gitignore export-ignore
 /.github export-ignore
 /tests export-ignore
 /.git export-ignore
-/composer.json export-ignore
 /composer.lock export-ignore
 
-# Allow 'flutter-example' and 'laravel-example' to be included
-\!flutter-example/** export-ok
-\!laravel-example/** export-ok
+# Include example folders (by NOT excluding them)
+# So don't put export-ignore on these!
+# No need to escape !

@@ -1,0 +1,2 @@
+X:/Visualcode/UKK/Frontend/kasir/android/app/.cxx/Debug/a61c6u6k/x86_64/CMakeFiles/edit_cache.dir
+X:/Visualcode/UKK/Frontend/kasir/android/app/.cxx/Debug/a61c6u6k/x86_64/CMakeFiles/rebuild_cache.dir
