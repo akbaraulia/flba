@@ -10,6 +10,7 @@ abstract class _Paths{
   static const checkout = '/checkout';
   static const konfirmasi = '/konfirmasi';
   static const result = '/result';
+  static const history = '/history';
 }
 
 abstract class Routes{
@@ -23,4 +24,5 @@ abstract class Routes{
   static const checkout = _Paths.checkout;
   static const konfirmasi = _Paths.konfirmasi;
   static const result = _Paths.result;
+  static const history = _Paths.history;
 }

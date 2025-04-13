@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:kasir/app/service/api_endpoint.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
 class TransactionController extends GetxController {
   final box = GetStorage();
@@ -278,5 +281,58 @@ class TransactionController extends GetxController {
     } catch (e) {
       Get.snackbar('Error', 'Terjadi kesalahan: $e');
     }
+  }
+
+  Future<void> generateAndDownloadInvoice() async {
+    final pdf = pw.Document();
+
+    final selectedProducts = products
+        .where((p) => (productQuantities[p['id']] ?? 0) > 0)
+        .map((p) => {
+              ...p,
+              'qty': productQuantities[p['id']]!,
+            })
+        .toList();
+
+    final total = getTotalBayar();
+    final uang = uangDiberi.value;
+    final kembalian = uang - total;
+
+    pdf.addPage(
+      pw.Page(
+        build: (pw.Context context) {
+          return pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.Text('Invoice',
+                  style: pw.TextStyle(
+                      fontSize: 24, fontWeight: pw.FontWeight.bold)),
+              pw.SizedBox(height: 16),
+              ...selectedProducts.map((product) {
+                final qty = product['qty'];
+                final price = int.parse(product['price'].toString());
+                final subtotal = qty * price;
+                return pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Text('${product['name_product']}'),
+                    pw.Text('Qty: $qty x Rp $price = Rp $subtotal'),
+                    pw.SizedBox(height: 8),
+                  ],
+                );
+              }),
+              pw.Divider(),
+              pw.Text('Total: Rp $total'),
+              pw.Text('Uang Diberi: Rp $uang'),
+              pw.Text('Kembalian: Rp $kembalian'),
+            ],
+          );
+        },
+      ),
+    );
+
+    await Printing.layoutPdf(
+      onLayout: (PdfPageFormat format) async => pdf.save(),
+    );
   }
 }

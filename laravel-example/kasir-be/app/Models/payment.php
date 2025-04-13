@@ -16,6 +16,7 @@ class Payment extends Model
         'total_price',
         'change',
         'pay',
+        'qty',
     ];
 
     // Relasi

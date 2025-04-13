@@ -12,7 +12,8 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedProducts = productController.products
-        .where((p) => (transactionController.productQuantities[p['id']] ?? 0) > 0)
+        .where(
+            (p) => (transactionController.productQuantities[p['id']] ?? 0) > 0)
         .toList();
 
     final total = transactionController.getTotalBayar();
@@ -31,13 +32,14 @@ class Result extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-
             Expanded(
               child: ListView.builder(
                 itemCount: selectedProducts.length,
                 itemBuilder: (_, index) {
                   final product = selectedProducts[index];
-                  final qty = transactionController.productQuantities[product['id']] ?? 0;
+                  final qty =
+                      transactionController.productQuantities[product['id']] ??
+                          0;
                   final subtotal = transactionController.getSubtotal(product);
 
                   return ListTile(
@@ -49,19 +51,17 @@ class Result extends StatelessWidget {
                 },
               ),
             ),
-
             const Divider(),
             Text('Total: Rp $total'),
             Text('Uang Diberi: Rp $uangDiberi'),
             Text('Kembalian: Rp $kembalian'),
             const SizedBox(height: 24),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton.icon(
-                  onPressed: () {
-                    // nanti implementasi unduh invoice
+                  onPressed: () async {
+                    await transactionController.generateAndDownloadInvoice();
                   },
                   icon: const Icon(Icons.download),
                   label: const Text('Unduh'),

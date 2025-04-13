@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:kasir/app/modules/auth/login/bindings/binding_login.dart';
 import 'package:kasir/app/modules/auth/login/views/loginpage.dart';
+import 'package:kasir/app/modules/history/bindings/history_binding.dart';
+import 'package:kasir/app/modules/history/views/history.dart';
 import 'package:kasir/app/modules/home/bindings/binding_home.dart';
 import 'package:kasir/app/modules/home/views/dashboard_admin.dart';
 import 'package:kasir/app/modules/home/views/dashboard_kasir.dart';
@@ -25,6 +27,7 @@ class AppPages {
   static const checkout = Routes.checkout;
   static const konfirmasi = Routes.konfirmasi;
   static const result = Routes.result;
+  static const history = Routes.history;
 
   static final routes = [
     GetPage(
@@ -72,6 +75,11 @@ class AppPages {
         TransactionBinding(),
         ProductBinding(),
       ],
+    ),
+    GetPage(
+      name: _Paths.history,
+      page: () => History(),
+      binding: HistoryBinding(),
     )
   ];
 }

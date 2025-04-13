@@ -109,13 +109,13 @@ class DashboardContent extends StatelessWidget {
             'Penjualan 15 Hari Terakhir',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 200, child: Barchart()),
+          SizedBox(height: 200, child: Barchart()),
           const SizedBox(height: 20),
           const Text(
             'Persentase Penjualan Produk',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 200, child: Diagrampie()),
+           SizedBox(height: 200, child: Diagrampie()),
         ],
       ),
     );

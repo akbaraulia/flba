@@ -17,6 +17,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('payments', PaymentController::class);
     Route::apiResource('members', MemberController::class);
     Route::post('/members/find', [MemberController::class, 'findByPhone']);
+    Route::get('/dashboard/jumlah-pembeli-hari-ini', [PaymentController::class, 'getJumlahPembeliHariIni']);
+    Route::get('/dashboard/persentase-penjualan-produk', [PaymentController::class, 'getPersentasePenjualanProduk']);
+    Route::get('/dashboard/penjualan-15-hari-terakhir', [PaymentController::class, 'getPenjualan15HariTerakhir']);
 });
 
 Route::fallback(function () {

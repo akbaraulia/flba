@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kasir/app/modules/history/views/history.dart';
 import 'package:kasir/app/modules/home/controllers/dashboard_kasir_controller.dart';
 import 'package:kasir/app/modules/product/views/product_kasir.dart';
 import 'package:kasir/app/modules/transaction/views/transaction.dart';
@@ -11,10 +12,10 @@ class DashboardKasir extends StatelessWidget {
       Get.put(DashboardKasirController());
 
   final List<Widget> _pages = [
-    const KasirHomeContent(),
+    KasirHomeContent(),
     ProductKasir(),
     Transaction(),
-    const Center(child: Text("Riwayat Transaksi")),
+    History()
   ];
 
   void _showLogoutDialog(BuildContext context) {
@@ -93,24 +94,28 @@ class DashboardKasir extends StatelessWidget {
 }
 
 class KasirHomeContent extends StatelessWidget {
-  const KasirHomeContent({super.key});
+  KasirHomeContent({super.key});
+  final DashboardKasirController controller =
+      Get.put(DashboardKasirController());
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(12),
+    return Padding(
+      padding: const EdgeInsets.all(12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Total Penjualan Hari Ini",
+          const Text("Total Pembeli Hari Ini",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          SizedBox(height: 10),
-          // Tempat total penjualan nanti
+          const SizedBox(height: 10),
           Card(
             elevation: 2,
             child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Text("Rp 0", style: TextStyle(fontSize: 24)),
+              padding: const EdgeInsets.all(20),
+              child: Obx(() => Text(
+                    'Jumlah Pembeli: ${controller.jumlahPembeli.value}',
+                    style: const TextStyle(fontSize: 16),
+                  )),
             ),
           ),
         ],
