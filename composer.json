@@ -9,6 +9,21 @@
         "Princebamm\\Flba\\": "src/"
       }
     },
+    "extra": {
+      "branch-alias": {
+        "dev-main": "0.1-dev"
+      }
+    },
+    "archive": {
+      "exclude": [
+        "/tests/*",
+        "/.git/*",
+        "/.github/*",
+        "/.gitignore",
+        "/composer.json",
+        "/composer.lock"
+      ]
+    },
     "authors": [
       {
         "name": "Prince Bammm Antapradja",
