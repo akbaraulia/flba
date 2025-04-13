@@ -1,7 +1,7 @@
 {
     "name": "princebamm/flba",
     "description": "FLBA (Flutter Laravel by Anonymous) is a package that provides a simple way to integrate Flutter with Laravel. It allows you to create a Flutter app that communicates with your Laravel backend using RESTful APIs.",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "type": "library",
     "license": "MIT",
     "autoload": {
